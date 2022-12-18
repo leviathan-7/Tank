@@ -1,0 +1,2 @@
+C:\Users\1\Desktop\индив-3\Tank\x64\Debug\Tank.vcxproj.CopyComplete
+C:\Users\1\Desktop\Tank\Tank\x64\Debug\Tank.vcxproj.CopyComplete
