@@ -5,12 +5,12 @@
 #include "obj-parser.h"
 
 GLuint Program0, Program1, Program2, Program3, Program4, Program5;
-GLint Attrib_vertex_position0, Attrib_vertex_texture_coordinate0;
-GLint Attrib_vertex_position1, Attrib_vertex_texture_coordinate1;
-GLint Attrib_vertex_position2, Attrib_vertex_texture_coordinate2;
-GLint Attrib_vertex_position3, Attrib_vertex_texture_coordinate3;
-GLint Attrib_vertex_position4, Attrib_vertex_texture_coordinate4;
-GLint Attrib_vertex_position5, Attrib_vertex_texture_coordinate5;
+GLint Attrib_vertex_position0, Attrib_vertex_texture_coordinate0, Attrib_vertex_normal0;
+GLint Attrib_vertex_position1, Attrib_vertex_texture_coordinate1, Attrib_vertex_normal1;
+GLint Attrib_vertex_position2, Attrib_vertex_texture_coordinate2, Attrib_vertex_normal2;
+GLint Attrib_vertex_position3, Attrib_vertex_texture_coordinate3, Attrib_vertex_normal3;
+GLint Attrib_vertex_position4, Attrib_vertex_texture_coordinate4, Attrib_vertex_normal4;
+GLint Attrib_vertex_position5, Attrib_vertex_texture_coordinate5, Attrib_vertex_normal5;
 
 
 GLuint VBO_0, VBO_1, VBO_2, VBO_3, VBO_4, VBO_5;

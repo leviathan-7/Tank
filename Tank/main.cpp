@@ -223,6 +223,14 @@ void initShaderProgram0()
         return;
     }
 
+    const char* attr_name_normal = "normal";
+    Attrib_vertex_normal0 = glGetAttribLocation(Program0, attr_name_normal);
+    if (Attrib_vertex_position0 == -1)
+    {
+        std::cout << "could not bind attrib " << attr_name_normal << std::endl;
+        return;
+    }
+
     checkOpenGLerror("initShaderProgram0");
 }
 
@@ -267,6 +275,14 @@ void initShaderProgram1()
     if (Attrib_vertex_texture_coordinate1 == -1)
     {
         std::cout << "could not bind attrib " << attr_name_texture_coordinate1 << std::endl;
+        return;
+    }
+
+    const char* attr_name_normal = "normal";
+    Attrib_vertex_normal1 = glGetAttribLocation(Program1, attr_name_normal);
+    if (Attrib_vertex_position1 == -1)
+    {
+        std::cout << "could not bind attrib " << attr_name_normal << std::endl;
         return;
     }
 
@@ -317,6 +333,14 @@ void initShaderProgram2()
         return;
     }
 
+    const char* attr_name_normal = "normal";
+    Attrib_vertex_normal2 = glGetAttribLocation(Program2, attr_name_normal);
+    if (Attrib_vertex_position2 == -1)
+    {
+        std::cout << "could not bind attrib " << attr_name_normal << std::endl;
+        return;
+    }
+
     checkOpenGLerror("initShaderProgram2");
 }
 
@@ -361,6 +385,14 @@ void initShaderProgram3()
     if (Attrib_vertex_texture_coordinate3 == -1)
     {
         std::cout << "could not bind attrib " << attr_name_texture_coordinate3 << std::endl;
+        return;
+    }
+
+    const char* attr_name_normal = "normal";
+    Attrib_vertex_normal3 = glGetAttribLocation(Program3, attr_name_normal);
+    if (Attrib_vertex_position3 == -1)
+    {
+        std::cout << "could not bind attrib " << attr_name_normal << std::endl;
         return;
     }
 
@@ -411,6 +443,14 @@ void initShaderProgram4()
         return;
     }
 
+    const char* attr_name_normal = "normal";
+    Attrib_vertex_normal4 = glGetAttribLocation(Program4, attr_name_normal);
+    if (Attrib_vertex_position4 == -1)
+    {
+        std::cout << "could not bind attrib " << attr_name_normal << std::endl;
+        return;
+    }
+
     checkOpenGLerror("initShaderProgram4");
 }
 
@@ -455,6 +495,14 @@ void initShaderProgram5()
     if (Attrib_vertex_texture_coordinate5 == -1)
     {
         std::cout << "could not bind attrib " << attr_name_texture_coordinate5 << std::endl;
+        return;
+    }
+
+    const char* attr_name_normal = "normal";
+    Attrib_vertex_normal5 = glGetAttribLocation(Program5, attr_name_normal);
+    if (Attrib_vertex_position5 == -1)
+    {
+        std::cout << "could not bind attrib " << attr_name_normal << std::endl;
         return;
     }
 
@@ -611,7 +659,7 @@ void InitTextures()
 void drawProgram0()
 {
     glUseProgram(Program0);
-
+    glEnableVertexAttribArray(Attrib_vertex_normal0);
     glEnableVertexAttribArray(Attrib_vertex_position0);
     glEnableVertexAttribArray(Attrib_vertex_texture_coordinate0);
 
@@ -619,7 +667,7 @@ void drawProgram0()
 
     glVertexAttribPointer(Attrib_vertex_position0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
     glVertexAttribPointer(Attrib_vertex_texture_coordinate0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-
+    glVertexAttribPointer(Attrib_vertex_normal0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glm::mat4 model(1.0f);
@@ -654,7 +702,7 @@ void drawProgram0()
 
     glDisableVertexAttribArray(Attrib_vertex_position0);
     glDisableVertexAttribArray(Attrib_vertex_texture_coordinate0);
-
+    glDisableVertexAttribArray(Attrib_vertex_normal0);
     glUseProgram(0);
 
     checkOpenGLerror("drawProgram0");
@@ -663,7 +711,7 @@ void drawProgram0()
 void drawProgram1()
 {
     glUseProgram(Program1);
-
+    glEnableVertexAttribArray(Attrib_vertex_normal1);
     glEnableVertexAttribArray(Attrib_vertex_position1);
     glEnableVertexAttribArray(Attrib_vertex_texture_coordinate1);
 
@@ -671,7 +719,7 @@ void drawProgram1()
 
     glVertexAttribPointer(Attrib_vertex_position1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
     glVertexAttribPointer(Attrib_vertex_texture_coordinate1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-
+    glVertexAttribPointer(Attrib_vertex_normal1, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glm::mat4 model(1.0f);
@@ -706,7 +754,7 @@ void drawProgram1()
 
     glDisableVertexAttribArray(Attrib_vertex_position1);
     glDisableVertexAttribArray(Attrib_vertex_texture_coordinate1);
-
+    glDisableVertexAttribArray(Attrib_vertex_normal1);
     glUseProgram(0);
 
     checkOpenGLerror("drawProgram1");
@@ -715,7 +763,7 @@ void drawProgram1()
 void drawProgram2()
 {
     glUseProgram(Program2);
-
+    glEnableVertexAttribArray(Attrib_vertex_normal2);
     glEnableVertexAttribArray(Attrib_vertex_position2);
     glEnableVertexAttribArray(Attrib_vertex_texture_coordinate2);
 
@@ -723,7 +771,7 @@ void drawProgram2()
 
     glVertexAttribPointer(Attrib_vertex_position2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
     glVertexAttribPointer(Attrib_vertex_texture_coordinate2, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-
+    glVertexAttribPointer(Attrib_vertex_normal2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glm::mat4 model(1.0f);
@@ -758,7 +806,7 @@ void drawProgram2()
 
     glDisableVertexAttribArray(Attrib_vertex_position2);
     glDisableVertexAttribArray(Attrib_vertex_texture_coordinate2);
-
+    glDisableVertexAttribArray(Attrib_vertex_normal2);
     glUseProgram(0);
 
     checkOpenGLerror("drawProgram2");
@@ -767,7 +815,7 @@ void drawProgram2()
 void drawProgram3()
 {
     glUseProgram(Program3);
-
+    glEnableVertexAttribArray(Attrib_vertex_normal3);
     glEnableVertexAttribArray(Attrib_vertex_position3);
     glEnableVertexAttribArray(Attrib_vertex_texture_coordinate3);
 
@@ -775,7 +823,7 @@ void drawProgram3()
 
     glVertexAttribPointer(Attrib_vertex_position3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
     glVertexAttribPointer(Attrib_vertex_texture_coordinate3, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-
+    glVertexAttribPointer(Attrib_vertex_normal3, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glm::mat4 model(1.0f);
@@ -810,7 +858,7 @@ void drawProgram3()
 
     glDisableVertexAttribArray(Attrib_vertex_position3);
     glDisableVertexAttribArray(Attrib_vertex_texture_coordinate3);
-
+    glDisableVertexAttribArray(Attrib_vertex_normal3);
     glUseProgram(0);
 
     checkOpenGLerror("drawProgram3");
@@ -819,7 +867,7 @@ void drawProgram3()
 void drawProgram4()
 {
     glUseProgram(Program4);
-
+    glEnableVertexAttribArray(Attrib_vertex_normal4);
     glEnableVertexAttribArray(Attrib_vertex_position4);
     glEnableVertexAttribArray(Attrib_vertex_texture_coordinate4);
 
@@ -827,7 +875,7 @@ void drawProgram4()
 
     glVertexAttribPointer(Attrib_vertex_position4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
     glVertexAttribPointer(Attrib_vertex_texture_coordinate4, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-
+    glVertexAttribPointer(Attrib_vertex_normal4, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glm::mat4 model(1.0f);
@@ -862,7 +910,7 @@ void drawProgram4()
 
     glDisableVertexAttribArray(Attrib_vertex_position4);
     glDisableVertexAttribArray(Attrib_vertex_texture_coordinate4);
-
+    glDisableVertexAttribArray(Attrib_vertex_normal4);
     glUseProgram(0);
 
     checkOpenGLerror("drawProgram4");
@@ -874,12 +922,13 @@ void drawProgram5()
 
     glEnableVertexAttribArray(Attrib_vertex_position5);
     glEnableVertexAttribArray(Attrib_vertex_texture_coordinate5);
+    glEnableVertexAttribArray(Attrib_vertex_normal5);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO_5);
 
     glVertexAttribPointer(Attrib_vertex_position5, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, position));
     glVertexAttribPointer(Attrib_vertex_texture_coordinate5, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, texcoord));
-
+    glVertexAttribPointer(Attrib_vertex_normal5, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (GLvoid*)offsetof(Vertex, normal));
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glm::mat4 model(1.0f);
@@ -914,6 +963,7 @@ void drawProgram5()
 
     glDisableVertexAttribArray(Attrib_vertex_position5);
     glDisableVertexAttribArray(Attrib_vertex_texture_coordinate5);
+    glDisableVertexAttribArray(Attrib_vertex_normal5);
 
     glUseProgram(0);
 
