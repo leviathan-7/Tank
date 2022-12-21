@@ -16,27 +16,32 @@ const char* FragShaderSource = R"(
 
     uniform vec3 view_position;
 
-    vec3 direction_light_position = vec3(0.0f,10.0f,20.0f);
 
-    vec4 calculate_direction_light()
+    vec4 shadeToon(vec3 light_direction, float intensivity)
     {
-	    float ambient = 0.30f;
-
-	    vec3 normal = normalize(vs_normal);
-	    vec3 light_direction = normalize(direction_light_position);
-	    float diffuse = max(dot(normal, light_direction), 0.0f);
-
-	    float specular_light = 0.50f;
-	    vec3 view_direction = normalize(view_position - vs_position);
-	    vec3 reflection_direction = reflect(-light_direction, normal);
-	    float spec_amount = pow(max(dot(view_direction, reflection_direction), 0.0f), 8);
-	    float specular = spec_amount * specular_light;
-
-	    return texture(texture, vs_texcoord) * (diffuse + ambient) + texture(texture, vs_texcoord).r * specular;
-    }
+        vec4 diffColor = texture(texture, vs_texcoord);
+        vec3 normal = normalize(vs_normal);
+        vec3 lightDir = normalize(light_direction);
+        float diff = 0.2f + max(dot(normal, lightDir), 0.0f);
+        if (diff < 0.4f)
+        {
+            diffColor *= 0.3f;
+        }
+        else if (diff > 0.7f)    
+        {
+            diffColor *= 1.3f;
+        }
+        return diffColor * intensivity;
+    }   
 
     void main() {
-        color = texture(texture, vs_texcoord) + calculate_direction_light();
+
+        vec3 dir_light_direction = vec3(0.0f,10.0f,50.0f);
+        
+        float dir_light_intensivity = 0.5f;
+
+        color = texture(texture, vs_texcoord) + shadeToon(dir_light_direction, dir_light_intensivity);
+        
     }
 )";
 
